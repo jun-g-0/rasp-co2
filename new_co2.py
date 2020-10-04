@@ -26,19 +26,19 @@ def readdata():
     print(len(result))
 
     if len(result) >= 9:
-      print(result[2])
-      print(result[3])
+        print(result[2])
+        print(result[3])
       
-      #checksum = (0xFF*1 - ((result[1]*1+result[2]*1+result[3]*1+result[4]*1+result[5]*1+result[6]*1+result[7]*1)% 256))+ 0x01*1
-      #checksumok = 'FAIL'
-      
-      #if checksum == result[8]:
-      #  checksumok = 'PASS'
-      
-      data = now + "," + str(result[2]*256+result[3])+ "\n" #',' + checksumok + 
+        #checksum = (0xFF*1 - ((result[1]*1+result[2]*1+result[3]*1+result[4]*1+result[5]*1+result[6]*1+result[7]*1)% 256))+ 0x01*1
+        #checksumok = 'FAIL'
+
+        #if checksum == result[8]:
+        #  checksumok = 'PASS'
+        
+        data = '{}, {}\n'.format(now, str(result[2]*256+result[3]) #you can add checksumok
       
     else:
-      data = now + "," + 'nodata'+ "\n" #,FAIL
+        data = '{}, nodata\n'.format(now) #FAIL
       
     print(data)
     file_data = open(saveFileName , "a" )
@@ -49,5 +49,3 @@ if __name__ == '__main__':
     setup()
     while True:
         readdata()
-
- 
